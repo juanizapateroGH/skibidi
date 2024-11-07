@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Equipo y Publicación</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f3f4f6;
+        }
+        header {
+            background-color: #000000;
+        }
+        .bg-black {
+            background-color: #000000;
+        }
+        .text-primary-foreground {
+            color: #FFFFFF;
+        }
+        #boton {
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+        #boton:hover {
+            background-color: #121111;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-100">
+    <header class="bg-black text-primary-foreground px-4 lg:px-6 h-14 flex items-center">
+        <a class="flex items-center justify-center" href="../main.php">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white size-6">
+                <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
+            </svg>
+            <span class="sr-only">Encontrar Partido</span>
+        </a>
+        <nav class="ml-auto pr-10 mr-10 flex gap-4 sm:gap-6">
+            <div class="space-x-3.5">
+                <a href="main.html" class="text-sm text-white font-medium hover:underline underline-offset-4">Inicio</a>
+                <a href="crearEquipos.html" class="text-sm text-white font-medium hover:underline underline-offset-4">Partidos</a>
+                <a href="mostrarEquipos.html" class="text-sm text-white font-medium hover:underline underline-offset-4">Equipos</a>
+            </div>  
+        </nav>
+    </header>
+
+    <main class="flex items-center justify-center flex-1">
+        <div class="container max-w-lg bg-white p-8 rounded-lg shadow-md">
+            <h1 class="text-2xl font-bold mb-6 text-center">Crear Equipo y Publicación</h1>
+            
+            <!-- Formulario para crear un equipo -->
+            <form id="teamForm" class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">Crear Equipo</h2>
+                <div class="mb-4">
+                    <label for="teamName" class="block text-gray-700 font-semibold mb-2">Nombre del Equipo:</label>
+                    <input type="text" id="teamName" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="players" class="block text-gray-700 font-semibold mb-2">Número de Participantes:</label>
+                    <input type="number" id="players" max="22" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="fieldType" class="block text-gray-700 font-semibold mb-2">Tipo de Cancha:</label>
+                    <select id="fieldType" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <option value="5">Fútbol 5</option>
+                        <option value="7">Fútbol 7</option>
+                        <option value="11">Fútbol 11</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Guardar Equipo</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Enlazar el archivo JavaScript externo -->
+    <script src="js/publications.js"></script>
+</body>
+</html>

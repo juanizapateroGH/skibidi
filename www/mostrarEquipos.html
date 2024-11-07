@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Equipo y Buscar Rivales</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+        }
+        header {
+            background-color: #000000;
+        }
+        .bg-black {
+            background-color: #000000;
+        }
+        .text-primary-foreground {
+            color: #FFFFFF;
+        }
+        #boton {
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+        #boton:hover {
+            background-color: #121111;
+        }
+    </style>
+</head>
+<body class="flex bg-zinc-300 flex-col min-h-screen">
+    <header class="bg-black text-primary-foreground px-4 lg:px-6 h-14 flex items-center">
+        <a class="flex items-center justify-center" href="../main.php">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white size-6">
+                <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
+            </svg>
+            <span class="sr-only">Encontrar Partido</span>
+        </a>
+        <nav class="ml-auto pr-10 mr-10 flex gap-4 sm:gap-6">
+            <div class="space-x-3.5">
+                <a href="main.html" class="text-sm text-white font-medium hover:underline underline-offset-4">Inicio</a>
+                <a href="crearEquipos.html" class="text-sm text-white font-medium hover:underline underline-offset-4">Partidos</a>
+                <a href="mostrarEquipos.html" class="text-sm text-white font-medium hover:underline underline-offset-4">Equipos</a>
+            </div>  
+        </nav>
+    </header>
+    <main class="justify-center items-center m-6 bg-white px-4 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-6 mt-2 text-center">Equipos Disponibles</h2>
+        <table class="min-w-full bg-white mb-6">
+            <thead>
+                <tr>
+                    <th class="py-2 bg-gray-200 font-bold uppercase text-gray-700 text-sm text-left">Participantes</th>
+                    <th class="py-2 bg-gray-200 font-bold uppercase text-gray-700 text-sm text-left">Nombre del Equipo</th>
+                    <th class="py-2 bg-gray-200 font-bold uppercase text-gray-700 text-sm text-left">Tipo de Cancha</th>
+                    <th class="py-2 bg-gray-200 font-bold uppercase text-gray-700 text-sm text-left">Puntos</th>
+                    <th class="py-2 bg-gray-200 font-bold uppercase text-gray-700 text-sm text-center">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas se insertarán aquí por JavaScript -->
+            </tbody>
+        </table>
+    </main>
+    <script src="js/mostrarPublicacion.js"></script>
+</body>
+</html>

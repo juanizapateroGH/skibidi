@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontrar Partido</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: white;
+        }
+        header {
+            background-color: #000000;
+        }
+        .bg-black {
+            background-color: #000000;
+        }
+        .text-primary-foreground {
+            color: #FFFFFF;
+        }
+        #boton {
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+        #boton:hover {
+            background-color: #121111;
+        }
+        /* Estilos para el menú desplegable */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #a1a1a1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+        /* Estilos para la sección de contacto */
+        .contact-section {
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="flex bg-zinc-300 flex-col min-h-screen">
+    <header class="bg-black text-primary-foreground px-4 lg:px-6 h-14 flex items-center">
+        <a class="flex items-center justify-center" href="/">
+            <span class="sr-only">Encontrar Partido</span>
+        </a>
+        <nav class="ml-auto pr-10 mr-10 flex gap-4">
+            <div class="space-x-3.5">
+                <a href="/" class="text-sm text-white font-medium hover:underline">Inicio</a>
+                <a href="#" class="text-sm text-white font-medium hover:underline">Partidos</a>
+                <a href="/crearequipo" class="text-sm text-white font-medium hover:underline">Equipos</a>
+            </div>
+            <div class="dropdown">
+                <a href="/micuenta" class="text-sm text-white font-medium hover:underline dropbtn">Mi cuenta</a>
+                <div class="dropdown-content">
+                    <a href="/micuenta">Configuración</a>
+                    <a href="/logout">Cerrar sesión</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1">
+        <section class="w-full pt-12 border-y">
+            <div class="px-4 md:px-6 space-y-10">
+                <div class="text-center">
+                    <p class="text-lg font-medium text-primary">¡Bienvenido a Encontrar Partido!</p>
+                    <h1 class="text-3xl font-bold">Encontrar partido</h1>
+                    <div class="mt-6">
+                        <a href="mostrarEquipos.html" id="boton" class="inline-flex h-16 w-56 mt-8 items-center justify-center rounded-lg bg-black text-white shadow transition-colors hover:bg-primary/90">
+                            Encontrar!
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-9">Administra tu equipo</h2>
+                    <p class="text-lg font-medium text-primary">Administra todos los datos del equipo.</p>
+                    <div class="mt-6">
+                        <a href="crearEquipo.html" id="boton" class="inline-flex h-16 w-56 mt-8 items-center justify-center rounded-lg bg-black text-white shadow transition-colors hover:bg-primary/90">
+                            Configuración
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="flex flex-col gap-2 py-6 w-full items-center justify-between px-4 border-t bg-muted text-muted-foreground">
+        <p class="text-xs text-center w-full">© 2024 Encontrar Partido. Todos los derechos reservados.</p>
+    </footer>
+</body>
+ <script >
+ const express = require('express');
+const session = require('express-session');
+const mysql = require('mysql');
+const path = require('path');
+
+const app = express();
+const port = 3000;
+
+// Configuración de la sesión
+app.use(session({
+    secret: 'mi_secreto',
+    resave: false,
+    saveUninitialized: true,
+}));
+
+// Middleware para servir archivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Configuración de conexión a la base de datos
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'users_db'
+});
+
+// Conectar a la base de datos
+db.connect(err => {
+    if (err) {
+        console.error('Conexión fallida:', err);
+        return;
+    }
+    console.log('Conectado a la base de datos');
+});
+
+// Middleware para verificar la sesión
+app.use((req, res, next) => {
+    if (!req.session.user_id) {
+        return res.redirect('/login');
+    }
+    next();
+});
+
+// Ruta principal
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Iniciar el servidor
+app.listen(port, () => {
+    console.log(`Servidor escuchando en http://localhost:${port}`);
+});
+
+ </script>
+</html>
